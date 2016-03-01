@@ -9,11 +9,25 @@ class OpenFeedback {
     
   }
   
+  searchFeedback() {
+    
+  }
+  
   createFeedback() {
     
   }
   
+  getFeedback() {
+    
+  }
   
+  updateFeedback() {
+    
+  }
+  
+  deleteFeedback() {
+    
+  }
 }
 
 module.exports = OpenFeedback;
