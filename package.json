@@ -2,9 +2,10 @@
   "name": "openfeedback",
   "version": "0.0.1",
   "description": "A framework for searchable real-time feedback with a RESTful API on Node.js",
-  "main": "index.js",
+  "main": "./core/OpenFeedback.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "node ./documentation/generator.js"
   },
   "repository": {
     "type": "git",
