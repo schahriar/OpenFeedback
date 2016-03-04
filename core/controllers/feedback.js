@@ -1,6 +1,8 @@
-class Feedback {
-  constructor(schema) {
-    this.schema = schema || {};
+const DefaultController = require("./default");
+
+class Feedback extends DefaultController {
+  constructor(schema, driver) {
+    super(schema, driver);
   }
   
   search() {
