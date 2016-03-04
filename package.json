@@ -25,5 +25,11 @@
   "bugs": {
     "url": "https://github.com/schahriar/OpenFeedback/issues"
   },
-  "homepage": "https://github.com/schahriar/OpenFeedback#readme"
+  "homepage": "https://github.com/schahriar/OpenFeedback#readme",
+  "dependencies": {
+    "elasticsearch": "^10.1.3"
+  },
+  "devDependencies": {
+    "jsdoc-to-markdown": "^1.3.3"
+  }
 }
