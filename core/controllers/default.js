@@ -5,7 +5,7 @@ const EventEmitter = require("events");
 // ---- //
 
 let Drivers = {
-  "elasticsearch": require("./drivers/elasticsearch")
+  "elasticsearch": require("./drivers/elastic.search.js")
 };
 
 /**
