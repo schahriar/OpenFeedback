@@ -1,3 +1,5 @@
+"use strict";
+
 // Core //
 const EventEmitter = require("events");
 // ---- //

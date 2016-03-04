@@ -1,3 +1,5 @@
+"use strict";
+
 let Drivers = {
   "elasticsearch": require("./drivers/elasticsearch")
 };
