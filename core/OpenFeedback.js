@@ -25,6 +25,10 @@ class OpenFeedback {
   hasSchema(name) {
     return this.schemaMap.has(name);
   }
+  
+  getSchema(name) {
+    return this.schemaMap.get(name);
+  }
 }
 
 module.exports = OpenFeedback;
