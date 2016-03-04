@@ -1,5 +1,9 @@
 "use strict";
 
+// Core //
+const EventEmitter = require("events");
+// ---- //
+
 let Drivers = {
   "elasticsearch": require("./drivers/elasticsearch")
 };
@@ -8,13 +12,15 @@ let Drivers = {
  * Creates a new Controller.
  * @class
  */
-class DefaultController {
+class DefaultController extends EventEmitter {
   /**
    * @constructs
    * @param {Object} schema
    * @param {Object} driver - Takes name and connection options property
+   * @todo implement query queue, perform bulk on queue
    */
   constructor(schema, driver) {
+    super();
     this.ready = false;
     if (!driver || !driver.name) {
       driver = {
