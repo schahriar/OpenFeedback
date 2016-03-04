@@ -1,32 +1,29 @@
 "use strict";
 
+// Core //
+const FeedbackController = require("./controllers/feedback");
+// ---- //
+
 /**
  * Creates a new OpenFeedback instance.
  * @class
  */
 class OpenFeedback {
   constructor() {
-    
+    this.schemaMap = new Map();
   }
   
-  searchFeedback() {
-    
+  addSchema(name, schema) {
+    // Create Controller
+    let _schema = new FeedbackController(schema);
+    // Store in map
+    this.schemaMap.set(name, _schema);
+    // Get a copy
+    return this.schemaMap.get(name);
   }
   
-  createFeedback() {
-    
-  }
-  
-  getFeedback() {
-    
-  }
-  
-  updateFeedback() {
-    
-  }
-  
-  deleteFeedback() {
-    
+  hasSchema(name) {
+    return this.schemaMap.has(name);
   }
 }
 
