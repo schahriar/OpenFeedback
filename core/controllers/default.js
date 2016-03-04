@@ -3,6 +3,9 @@
 // Core //
 const EventEmitter = require("events");
 // ---- //
+// External //
+const Joi = require('joi');
+// -------- //
 
 let Drivers = {
   "elasticsearch": require("./drivers/elastic.search.js")
@@ -30,12 +33,16 @@ class DefaultController extends EventEmitter {
         }
       };
     }
-    this.schema = schema || {};
+    this.schema = schema || Joi.object();
     this.driver = DefaultController.fetchDriver(driver);
     this.driver.on("ready", () => {
       this.ready = true;
       this.emit("ready");
     });
+  }
+  
+  validate(document, callback) {
+    Joi.validate(document, this.schema, callback);
   }
 
   static fetchDriver(driver) {
