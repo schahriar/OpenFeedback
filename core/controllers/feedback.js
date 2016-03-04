@@ -1,4 +1,8 @@
+"use strict";
+
+// Controllers //
 const DefaultController = require("./default");
+// ----------- //
 
 class Feedback extends DefaultController {
   constructor(schema, driver) {
