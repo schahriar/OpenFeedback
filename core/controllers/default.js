@@ -34,6 +34,7 @@ class DefaultController extends EventEmitter {
     this.driver = DefaultController.fetchDriver(driver);
     this.driver.on("ready", () => {
       this.ready = true;
+      this.emit("ready");
     });
   }
 
