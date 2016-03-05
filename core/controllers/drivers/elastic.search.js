@@ -24,26 +24,26 @@ class Elastic extends EventEmitter {
     });
   }
   
-  search(query) {
-    return this.client.search(query);
+  search(query, callback) {
+    this.client.search(query, callback);
   }
   
-  create(document) {
-    return this.client.create(document);
+  create(document, callback) {
+    this.client.create(document, callback);
   }
   
-  get(index) {
-    return this.client.search({
+  get(index, callback) {
+    this.client.search({
       index: index
-    });
+    }, callback);
   }
   
-  update(document) {
-    return this.client.update(document);
+  update(document, callback) {
+    this.client.update(document, callback);
   }
   
-  delete(query) {
-    return this.client.delete(query);
+  delete(query, callback) {
+    this.client.delete(query, callback);
   }
   
   ping(callback) {
