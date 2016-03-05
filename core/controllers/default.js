@@ -34,6 +34,7 @@ class DefaultController extends EventEmitter {
         }
       };
     }
+    this.schemaDefinition = schema;
     this.schema = enjoi(schema || {});
     this.driver = DefaultController.fetchDriver(driver);
     this.driver.on("ready", () => {
@@ -44,6 +45,10 @@ class DefaultController extends EventEmitter {
   
   validate(document, callback) {
     Joi.validate(document, this.schema, callback);
+  }
+  
+  definition() {
+    return this.schemaDefinition;
   }
 
   static fetchDriver(driver) {

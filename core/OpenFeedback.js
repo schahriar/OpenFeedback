@@ -20,7 +20,7 @@ class OpenFeedback {
     // Create Controller
     let _controller = new FeedbackController(schema);
     // Store in map
-    this.schemaMap.set(name, { controller: _controller, schema: schema });
+    this.schemaMap.set(name, _controller);
     // Get a copy
     return this.schemaMap.get(name);
   }
@@ -30,7 +30,7 @@ class OpenFeedback {
   }
   
   getSchema(name) {
-    return this.schemaMap.get(name).schema;
+    return this.schemaMap.get(name);
   }
   
   listSchemas() {
@@ -38,7 +38,7 @@ class OpenFeedback {
     for (let Schema of this.schemaMap) {
       schemaArray.push({
         name: Schema[0],
-        schema: Schema[1].schema
+        schema: Schema[1]
       });
     }
     

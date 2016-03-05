@@ -15,7 +15,7 @@ describe("Schema & Definition tests", function () {
     app.addSchema("test", generalFeedbackDefinition);
   });
   it("should retrieve definition", function () {
-    var def = app.getSchema("test");
+    var def = app.getSchema("test").definition();
     expect(def).to.have.property("properties");
     expect(def.properties).to.have.property("body");
     expect(def.properties.body).to.have.property("description", "A feedback");
