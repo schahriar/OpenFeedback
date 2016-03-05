@@ -38,6 +38,10 @@ class OpenFeedback {
     
     return schemaArray;
   }
+  
+  static Schema() {
+    return Joi;
+  }
 }
 
 module.exports = OpenFeedback;
