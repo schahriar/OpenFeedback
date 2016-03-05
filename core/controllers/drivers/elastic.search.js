@@ -32,10 +32,8 @@ class Elastic extends EventEmitter {
     this.client.create(document, callback);
   }
   
-  get(index, callback) {
-    this.client.search({
-      index: index
-    }, callback);
+  get(query, callback) {
+    this.client.get(query, callback);
   }
   
   update(document, callback) {
