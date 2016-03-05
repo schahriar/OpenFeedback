@@ -9,7 +9,7 @@ class DefinitionParser {
   
   _parse() {
     for (let key in this.def) {
-      if (this.def.type) this.schema[key] = this.def.type;
+      if (this.def[key].type) this.schema[key] = this.def[key].type;
     }
   }
   
