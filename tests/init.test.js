@@ -1,8 +1,11 @@
 // #1
-var exec = require("child_process").exec;
+var elasticsearch = require("elasticsearch");
 describe("Initialization Tests", function () {
   it("should flush database", function (done) {
-    exec("curl \"http://localhost:9200/_all/_flush\"", function (error) {
+    var client = new elasticsearch.Client();
+    client.indices.delete({
+      index: "_all"
+    }, function(error) {
       if (error) throw error;
       done();
     });
