@@ -1,6 +1,6 @@
 {
   "name": "openfeedback",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A framework for searchable real-time feedback with a RESTful API on Node.js",
   "main": "./core/OpenFeedback.js",
   "scripts": {
