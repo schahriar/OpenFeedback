@@ -38,7 +38,10 @@ class OpenFeedback {
   listSchemas() {
     let schemaArray = [];
     for (let Schema of this.schemaMap) {
-      schemaArray.push(Schema);
+      schemaArray.push({
+        name: Schema[0],
+        schema: Schema[1].definition
+      });
     }
     
     return schemaArray;
