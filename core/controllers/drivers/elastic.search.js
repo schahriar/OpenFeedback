@@ -15,7 +15,7 @@ const elasticsearch = require('elasticsearch');
 class Elastic extends EventEmitter {
   constructor(options) {
     super();
-    this.client = new elasticsearch.client(options);
+    this.client = new elasticsearch.Client(options);
     // Ping Server
     this.ping((error) => {
       if (error) return this.emit("error", error);
