@@ -45,6 +45,8 @@ class Elastic extends EventEmitter {
   get(query, callback) {
     this.client.get(query, function(error, document) {
       if (error) return callback(error);
+      // Document not found, return null
+      if (!document.found) return callback(null, null);
 
       callback(null, document);
     });
