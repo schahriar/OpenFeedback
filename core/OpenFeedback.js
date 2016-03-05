@@ -29,6 +29,15 @@ class OpenFeedback {
   getSchema(name) {
     return this.schemaMap.get(name);
   }
+  
+  listSchemas() {
+    let schemaArray = [];
+    for (let Schema of this.schemaMap) {
+      schemaArray.push(Schema);
+    }
+    
+    return schemaArray;
+  }
 }
 
 module.exports = OpenFeedback;
