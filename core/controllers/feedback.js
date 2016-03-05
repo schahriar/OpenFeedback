@@ -5,11 +5,14 @@ const DefaultController = require("./default");
 // ----------- //
 
 class Feedback extends DefaultController {
-  constructor(schema, driver) {
-    super(schema, driver);
+  constructor(name, schema, driver) {
+    super(name, schema, driver);
   }
   
   search(query, callback) {
+    // Extend index, type
+    query.index = this.index;
+    query.type = "OpenFeedbackSchema";
     this.driver.search(query, function (error, results) {
       if (error) return callback(error);
       
@@ -17,35 +20,55 @@ class Feedback extends DefaultController {
     });
   }
   
-  create(document, callback) {
-    this.validate(document, (error) => {
+  create(model, callback) {
+    this.validate(model, (error) => {
       if (error) return callback(error);
       
-      this.driver.create(document, function (error, _document) {
+      // Construct Document
+      let document = {
+        index: this.index,
+        type: "OpenFeedbackSchema"
+      };
+      document.body = model;
+      
+      this.driver.create(document, function (error, _result) {
         if (error) return callback(error);
         
-        callback(null, _document);
+        callback(null, _result);
       });
     });
   }
   
   get(query, callback) {
+    // Extend index, type
+    query.index = this.index;
+    query.type = "OpenFeedbackSchema";
     this.driver.get(query, callback);
   }
   
-  update(document, callback) {
-    this.validate(document, (error) => {
+  update(model, callback) {
+    this.validate(model, (error) => {
       if (error) return callback(error);
       
-      this.driver.update(document, function (error, _document) {
+      // Construct Document
+      let document = {
+        index: this.index,
+        type: "OpenFeedbackSchema"
+      };
+      document.body = model;
+      
+      this.driver.update(document, function (error, _result) {
         if (error) return callback(error);
         
-        callback(null, _document);
+        callback(null, _result);
       });
     });
   }
   
   delete(query, callback) {
+    // Extend index, type
+    query.index = this.index;
+    query.type = "OpenFeedbackSchema";
     this.driver.delete(query, callback);
   }
 }
