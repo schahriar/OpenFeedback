@@ -32,7 +32,7 @@ class OpenFeedback {
   }
   
   getSchema(name) {
-    return this.schemaMap.get(name);
+    return this.schemaMap.get(name).definition;
   }
   
   listSchemas() {
