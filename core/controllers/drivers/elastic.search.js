@@ -26,15 +26,28 @@ class Elastic extends EventEmitter {
   }
   
   search(query, callback) {
-    this.client.search(query, callback);
+    this.client.search(query, function(error, response) {
+      if (error) return callback(error);
+
+      callback(null, response.hits.hits);
+    });
   }
   
   create(document, callback) {
-    this.client.create(document, callback);
+    this.client.create(document, function (error, response) {
+      if (error) return callback(error);
+      if (!response.created) return callback(new Error("Failed to create document"));
+
+      callback(null, response._id);
+    });
   }
   
   get(query, callback) {
-    this.client.get(query, callback);
+    this.client.get(query, function(error, document) {
+      if (error) return callback(error);
+
+      callback(null, document);
+    });
   }
   
   update(document, callback) {
