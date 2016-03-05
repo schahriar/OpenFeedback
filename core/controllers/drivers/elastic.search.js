@@ -38,7 +38,11 @@ class Elastic extends EventEmitter {
   }
   
   update(document, callback) {
-    this.client.update(document, callback);
+    this.client.update(document, function(error, document) {
+      if (error) return callback(error);
+
+      callback(null, document);
+    });
   }
   
   delete(query, callback) {

@@ -46,16 +46,17 @@ class Feedback extends DefaultController {
     this.driver.get(query, callback);
   }
   
-  update(model, callback) {
+  update(query, model, callback) {
     this.validate(model, (error) => {
       if (error) return callback(error);
       
       // Construct Document
-      let document = {
-        index: this.index,
-        type: "OpenFeedbackSchema"
+      let document = query;
+      document.index = this.index;
+      document.type = "OpenFeedbackSchema";
+      document.body = {
+        doc: model
       };
-      document.body = model;
       
       this.driver.update(document, function (error, _result) {
         if (error) return callback(error);
