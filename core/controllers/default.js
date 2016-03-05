@@ -5,6 +5,7 @@ const EventEmitter = require("events");
 // ---- //
 // External //
 const Joi = require('joi');
+const enjoi = require('enjoi');
 // -------- //
 
 let Drivers = {
@@ -22,7 +23,7 @@ class DefaultController extends EventEmitter {
    * @param {Object} driver - Takes name and connection options property
    * @todo implement query queue, perform bulk on queue
    */
-  constructor(definition, driver) {
+  constructor(schema, driver) {
     super();
     this.ready = false;
     if (!driver || !driver.name) {
@@ -33,8 +34,7 @@ class DefaultController extends EventEmitter {
         }
       };
     }
-    this.definition = definition;
-    this.schema = definition.get() || Joi.object();
+    this.schema = enjoi(schema || {});
     this.driver = DefaultController.fetchDriver(driver);
     this.driver.on("ready", () => {
       this.ready = true;
@@ -44,10 +44,6 @@ class DefaultController extends EventEmitter {
   
   validate(document, callback) {
     Joi.validate(document, this.schema, callback);
-  }
-  
-  getDefinition() {
-    return this.definition.getDefinition();
   }
 
   static fetchDriver(driver) {

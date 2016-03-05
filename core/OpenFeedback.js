@@ -2,7 +2,6 @@
 
 // Core //
 const FeedbackController = require("./controllers/feedback");
-const DefinitionParser = require("./common/DefinitionParser");
 // ---- //
 // External //
 const Joi = require("joi");
@@ -17,12 +16,11 @@ class OpenFeedback {
     this.schemaMap = new Map();
   }
   
-  addSchema(name, definition) {
-    let def = new DefinitionParser(definition);
+  addSchema(name, schema) {
     // Create Controller
-    let _controller = new FeedbackController(def);
+    let _controller = new FeedbackController(schema);
     // Store in map
-    this.schemaMap.set(name, { controller: _controller, schema: def.get(), definition: def.getDefinition() });
+    this.schemaMap.set(name, { controller: _controller, schema: schema });
     // Get a copy
     return this.schemaMap.get(name);
   }
@@ -32,7 +30,7 @@ class OpenFeedback {
   }
   
   getSchema(name) {
-    return this.schemaMap.get(name).definition;
+    return this.schemaMap.get(name).schema;
   }
   
   listSchemas() {
@@ -40,7 +38,7 @@ class OpenFeedback {
     for (let Schema of this.schemaMap) {
       schemaArray.push({
         name: Schema[0],
-        schema: Schema[1].definition
+        schema: Schema[1].schema
       });
     }
     
