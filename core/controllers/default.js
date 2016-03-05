@@ -23,7 +23,7 @@ class DefaultController extends EventEmitter {
    * @param {Object} driver - Takes name and connection options property
    * @todo implement query queue, perform bulk on queue
    */
-  constructor(schema, driver) {
+  constructor(name, schema, driver) {
     super();
     this.ready = false;
     if (!driver || !driver.name) {
@@ -34,12 +34,18 @@ class DefaultController extends EventEmitter {
         }
       };
     }
+    this.index = name;
     this.schemaDefinition = schema;
     this.schema = enjoi(schema || {});
     this.driver = DefaultController.fetchDriver(driver);
     this.driver.on("ready", () => {
-      this.ready = true;
-      this.emit("ready");
+      // Create Schema index
+      this.driver.indices.create({ index: this.index }, function (error) {
+        if (error) return this.emit("error", error);
+        // Emit ready
+        this.ready = true;
+        this.emit("ready");
+      });
     });
   }
   

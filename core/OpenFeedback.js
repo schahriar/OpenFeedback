@@ -18,7 +18,7 @@ class OpenFeedback {
   
   addSchema(name, schema) {
     // Create Controller
-    let _controller = new FeedbackController(schema);
+    let _controller = new FeedbackController(name, schema);
     // Store in map
     this.schemaMap.set(name, _controller);
     // Get a copy

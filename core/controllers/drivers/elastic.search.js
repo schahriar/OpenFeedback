@@ -19,6 +19,7 @@ class Elastic extends EventEmitter {
     // Ping Server
     this.ping((error) => {
       if (error) return this.emit("error", error);
+      
       // Emit ready when database is responding
       this.emit("ready", this);
     });
@@ -42,6 +43,10 @@ class Elastic extends EventEmitter {
   
   delete(query, callback) {
     this.client.delete(query, callback);
+  }
+  
+  createIndex(query, callback) {
+    this.client.indices.create(query, callback);
   }
   
   ping(callback) {
