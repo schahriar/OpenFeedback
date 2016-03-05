@@ -2,7 +2,11 @@
 
 // Core //
 const FeedbackController = require("./controllers/feedback");
+const DefinitionParser = require("./common/DefinitionParser");
 // ---- //
+// External //
+const Joi = require("joi");
+// -------- //
 
 /**
  * Creates a new OpenFeedback instance.
@@ -13,11 +17,12 @@ class OpenFeedback {
     this.schemaMap = new Map();
   }
   
-  addSchema(name, schema) {
+  addSchema(name, definition) {
+    let def = new DefinitionParser(definition);
     // Create Controller
-    let _schema = new FeedbackController(schema);
+    let _controller = new FeedbackController(def);
     // Store in map
-    this.schemaMap.set(name, _schema);
+    this.schemaMap.set(name, { controller: _controller, schema: def.get(), definition: def.getDefinition() });
     // Get a copy
     return this.schemaMap.get(name);
   }
