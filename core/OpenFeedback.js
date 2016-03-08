@@ -2,6 +2,7 @@
 
 // Core //
 const FeedbackController = require("./controllers/feedback");
+const APIServer = require("../api/server");
 // ---- //
 // External //
 const Joi = require("joi");
@@ -45,7 +46,8 @@ class OpenFeedback {
     return schemaArray;
   }
   
-  connect(server, options) {
+  connect(options, server) {
+    if (!server) server = APIServer;
     server(this, options || {});
   }
 }
