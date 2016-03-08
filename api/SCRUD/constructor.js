@@ -18,6 +18,9 @@ module.exports = function (schema) {
     next();
   });
   
+  // Set ready to initial state
+  ready = schema.ready;
+  
   // Wait for Schema to get ready
   schema.on("ready", () => {
     ready = true;
