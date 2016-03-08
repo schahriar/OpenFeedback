@@ -23,7 +23,7 @@ class Feedback extends DefaultController {
   create(model, callback) {
     this.validate(model, (error) => {
       if (error) return callback(error);
-      
+
       // Construct Document
       let document = {
         index: this.index,

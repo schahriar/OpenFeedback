@@ -14,8 +14,8 @@ describe("Initialization Tests", function () {
     global.app = new OpenFeedback();
     done();
   });
-  it("should add E2E test schema", function () {
-    app.addSchema("E2E", {
+  it("should add E2E test schema", function (done) {
+    var schema = app.addSchema("E2E", {
       type: 'object',
       properties: {
         body: {
@@ -26,6 +26,7 @@ describe("Initialization Tests", function () {
       },
       required: ['body']
     });
+    schema.on('ready', done);
   });
   it("should start RESTful API for E2E testing", function () {
     app.connect({ port: 28408, notrace: true });
