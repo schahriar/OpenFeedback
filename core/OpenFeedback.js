@@ -45,8 +45,8 @@ class OpenFeedback {
     return schemaArray;
   }
   
-  static Schema() {
-    return Joi;
+  connect(server, options) {
+    server(this, options || {});
   }
 }
 

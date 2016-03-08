@@ -30,7 +30,7 @@ var TestCache = [];
 
 // Cache All Tests
 fs.readdirSync(__dirname).forEach(function(file) {
-  if (file === 'runner.js') return;
+  if (path.parse(file).name.split('.').length <= 1) return;
   if (path.extname(file) === '.js') {
     // Read Order & Push to Cache (improve to read first line instead of whole file)
     var testPath = path.resolve(__dirname, file);

@@ -38,14 +38,18 @@ class DefaultController extends EventEmitter {
     this.schemaDefinition = schema;
     this.schema = enjoi(schema || {});
     this.driver = DefaultController.fetchDriver(driver);
-    this.driver.on("ready", () => {
+    this.driver.on("ready", (driver) => {
+      // Update driver
+      this.driver = driver;
       // Create Schema index
-      this.driver.indices.create({ index: this.index }, function (error) {
-        if (error) return this.emit("error", error);
+      this.driver.indices.create({ index: this.index }, (error) => {
         // Emit ready
         this.ready = true;
         this.emit("ready");
       });
+    });
+    this.driver.on("error", (error) => {
+      this.emit("error", error);
     });
   }
   

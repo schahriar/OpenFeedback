@@ -16,6 +16,8 @@ class Elastic extends EventEmitter {
   constructor(options) {
     super();
     this.client = new elasticsearch.Client(options);
+    // Import indices
+    this.indices = this.client.indices;
     // Ping Server
     this.ping((error) => {
       if (error) return this.emit("error", error);
