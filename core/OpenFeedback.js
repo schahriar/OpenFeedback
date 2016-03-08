@@ -18,6 +18,8 @@ class OpenFeedback {
   }
   
   addSchema(name, schema) {
+    // Lowercase name
+    name = name.toLowerCase();
     // Create Controller
     let _controller = new FeedbackController(name, schema);
     // Store in map
@@ -27,10 +29,14 @@ class OpenFeedback {
   }
   
   hasSchema(name) {
+    // Lowercase name
+    name = name.toLowerCase();
     return this.schemaMap.has(name);
   }
   
   getSchema(name) {
+    // Lowercase name
+    name = name.toLowerCase();
     return this.schemaMap.get(name);
   }
   
