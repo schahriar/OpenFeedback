@@ -144,4 +144,14 @@ describe("SCRUD End to End testing", function () {
       done();
     });
   });
+  it("should get JSON Schema definition", function(done) {
+    request.get(url.resolve(host, "definition"), function (error, response, body) {
+      if (error) throw error;
+      var result = JSON.parse(body);
+      expect(response).to.have.property("statusCode", 200);
+      expect(result).to.not.have.property("error");
+      expect(result).to.eql(generalFeedbackDefinition);
+      done();
+    });
+  });
 });

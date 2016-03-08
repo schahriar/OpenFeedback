@@ -1,15 +1,4 @@
 // #5
-var generalFeedbackDefinition = {
-  type: 'object',
-  properties: {
-    body: {
-      description: "A feedback",
-      type: 'string',
-      minimum: 10
-    }
-  },
-  required: ['body']
-};
 describe("Schema & Definition tests", function () {
   it("should add a new definiton", function () {
     app.addSchema("test", generalFeedbackDefinition);

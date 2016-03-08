@@ -28,6 +28,9 @@ module.exports = function (schema) {
   schema.on("error", (error) => {
     console.trace(error);
   });
+  
+  // Extras
+  router.get('/definition', require("./methods/get.definition.js")); // Get Schema Definition (JSON Schema)
 
   /// Methods based on BackboneJS 1.2.3
   // Ref: http://backbonejs.org/#Sync

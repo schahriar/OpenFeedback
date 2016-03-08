@@ -9,6 +9,17 @@ if (process.env.NODE_ENV === "production") {
 // Set Test Globals
 global.OpenFeedback = require("../core/OpenFeedback");
 global.app = {};
+global.generalFeedbackDefinition = {
+  type: 'object',
+  properties: {
+    body: {
+      description: "A feedback",
+      type: 'string',
+      minimum: 10
+    }
+  },
+  required: ['body']
+};
 global.expect = require("chai").expect;
 global.async = require("async");
 global.debug = false;
