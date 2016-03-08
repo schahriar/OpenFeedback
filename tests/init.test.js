@@ -28,6 +28,6 @@ describe("Initialization Tests", function () {
     });
   });
   it("should start RESTful API for E2E testing", function () {
-    app.connect({ port: 28408 });
+    app.connect({ port: 28408, notrace: true });
   });
 });

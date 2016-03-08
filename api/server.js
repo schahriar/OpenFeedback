@@ -60,7 +60,7 @@ module.exports = function RESTful_API(instance, options) {
   
   // Development error handler
   // will print stacktrace
-  if (app.get('env') === 'development') {
+  if ((app.get('env') === 'development') && (!options.notrace)) {
     app.use(function (err, req, res, next) {
       console.trace(err);
       res.status(err.status || 500);
